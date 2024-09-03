@@ -17,10 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
-from UrbanDjango.task2.views import index
-from UrbanDjango.task2.views import index2
+from UrbanDjango.task3.views import based, shop, basket
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
-    path('index/', index2.as_view())
+    path('', based.as_view()),
+    path('games/', shop),
+    path('cart/', basket.as_view()),
 ]
