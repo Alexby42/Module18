@@ -17,10 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
-from UrbanDjango.task4.views import based, shop, basket
+#from task4.views import based, basket, menu
+from task5.views import sign_up_by_html, sign_up_by_django
+
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('', based.as_view()),
+#     path('games/', menu),
+#     path('cart/', basket.as_view()),
+# ]
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', based.as_view()),
-    path('games/', shop),
-    path('cart/', basket.as_view()),
+    path('', sign_up_by_html),
+    path('django_sign_up/', sign_up_by_django),
 ]
