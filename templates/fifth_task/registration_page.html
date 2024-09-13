@@ -8,19 +8,20 @@
     <form method="post">
         {% csrf_token %}
         <label for="username">Введите логин:</label>
-        <input type="text" id="username" name="username" maxlength="30" required>
-        <h2>{{error1}}</h2>
+        {{ form.username.errors }}
+        {{ form.username }}
 
         <label for="password">Введите пароль:</label>
-        <input type="text" id="password" name="password" minlength="8" required>
+        {{ form.password.errors }}
+        {{ form.password }}
 
         <label for="repeat_password">Повторите пароль:</label>
-        <input type="text" id="repeat_password" name="repeat_password" minlength="8" required>
-        <h2>{{error2}}</h2>
+        {{ form.repeat_password.errors }}
+        {{ form.repeat_password }}
 
         <label for="age">Введите свой возраст:</label>
-        <input type="number" id="age" name="age" maxlength="3" required>
-        <h2>{{error3}}</h2>
+        {{ form.age.errors }}
+        {{ form.age }}
 
         <button type="submit">Зарегистрироваться</button>
     </form>

@@ -9,20 +9,19 @@ from task5.views import users
 
 class ContactForm(forms.Form):
     username = forms.CharField(max_length=30, label='Ваше имя')
-    password = forms.CharField(min_length=8, label='Ваш пароль')
-    repeat_password = forms.CharField(min_length=8, label='Повторите пароль')
-    age = forms.CharField(max_length=3, label='Ваш возраст')
-    #registration = forms.BooleanField(required=False, label='Зарегистрироваться')
+    password = forms.CharField(min_length=8, widget=forms.PasswordInput, label='Ваш пароль')
+    repeat_password = forms.CharField(min_length=8, widget=forms.PasswordInput, label='Повторите пароль')
+    age = forms.IntegerField(max_length=3, label='Ваш возраст')
 
     def clean(self):
-        global username, age
         cleaned_data = super().clean()
+        username = cleaned_data.get('username')
         password = cleaned_data.get('password')
         repeat_password = cleaned_data.get('repeat_password')
+        age = cleaned_data.get('age')
         if username in users:
-            raise forms.ValidationError('Пользователь уже существует')
+            self.add_error('username', 'Пользователь уже существует')
         if password != repeat_password:
-            raise forms.ValidationError('Пароли не совпадают!')
-        if int(age) < 18:
-            raise forms.ValidationError('Вы должны быть старше 18')
-        return
+            self.add_error('repeat_password', 'Пароли не совпадают')
+        if age is not None and age < 18:
+            self.add_error('age', 'Вы должны быть старше 18')
