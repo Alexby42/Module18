@@ -17,17 +17,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
-#from task4.views import based, basket, menu
+from task2.views import index, index2
+#from task3.views import based, shop, basket
+from task4.views import based, shop, basket
 from task5.views import sign_up_by_html, sign_up_by_django
 
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path('', based.as_view()),
-#     path('games/', menu),
-#     path('cart/', basket.as_view()),
-# ]
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('func/', index),
+    path('class/', index2.as_view()),
+    path('based/', based.as_view()),
+    #path('based/shop', shop.as_view()),
+    path('based/basket', basket.as_view()),
+    path('based/shop', shop),
     path('', sign_up_by_html),
     path('django_sign_up/', sign_up_by_django),
 ]

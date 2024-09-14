@@ -5,23 +5,20 @@
     <title>Document</title>
 </head>
 <body>
+<h2>{{ error }}</h2>
     <form method="post">
         {% csrf_token %}
         <label for="username">Введите логин:</label>
-        {{ form.username.errors }}
-        {{ form.username }}
+        <input type="text" id="username" name="username" maxlength="30" required>
 
         <label for="password">Введите пароль:</label>
-        {{ form.password.errors }}
-        {{ form.password }}
+        <input type="text" id="password" name="password" minlength="8" required>
 
         <label for="repeat_password">Повторите пароль:</label>
-        {{ form.repeat_password.errors }}
-        {{ form.repeat_password }}
+        <input type="text" id="repeat_password" name="repeat_password" minlength="8" required>
 
         <label for="age">Введите свой возраст:</label>
-        {{ form.age.errors }}
-        {{ form.age }}
+        <input type="number" id="age" name="age" required>
 
         <button type="submit">Зарегистрироваться</button>
     </form>
