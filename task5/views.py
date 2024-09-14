@@ -30,10 +30,10 @@ def sign_up_by_django(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data('username')
-            password = form.cleaned_data('password')
-            repeat_password = form.cleaned_data('repeat_password')
-            age = form.cleaned_data('age')
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            repeat_password = form.cleaned_data['repeat_password']
+            age = form.cleaned_data['age']
             if valid(users, username, password, repeat_password, int(age)):
                 return HttpResponse(f'Приветствуем, {username}!')
             if username in users:
@@ -45,4 +45,4 @@ def sign_up_by_django(request):
     else:
         form = ContactForm()
 
-    return render(request, 'fifth_task/registration_page.html', {'form': form})
+    return render(request, 'fifth_task/registration_page.html', context=info)
